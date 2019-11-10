@@ -45,8 +45,9 @@ func produceCmds(cmdr *producer.Commander) {
 
 func main() {
 	// parse args
-	addrPtr := flag.String("addr", "127.0.0.1", "a string")
-	portPtr := flag.String("port", "30010", "a string")
+	sAddrPtr := flag.String("server_addr", "127.0.0.1", "a string")
+	sPortPtr := flag.String("server_port", "30010", "a string")
+	cPortPtr := flag.String("client_port", "", "a string")
 	flag.Parse()
 
 	stopFlag := false
@@ -54,7 +55,7 @@ func main() {
 	signal.Notify(sigC, os.Interrupt)
 	go receive(sigC, &stopFlag)
 
-	conn, err := net.NewKeepAliveTCPConn(*addrPtr, *portPtr)
+	conn, err := net.NewKeepAliveTCPConn(*sAddrPtr, *sPortPtr, *cPortPtr)
 	if err != nil {
 		fmt.Println(err)
 		return

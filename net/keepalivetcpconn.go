@@ -9,12 +9,16 @@ import (
 )
 
 // NewKeepAliveTCPConn creates KeepAliveTCPConn
-func NewKeepAliveTCPConn(addr string, port string) (*KeepAliveTCPConn, error) {
-	tcpAddr, err := net.ResolveTCPAddr("tcp", addr+":"+port)
+func NewKeepAliveTCPConn(sAddr string, sPort string, cPort string) (*KeepAliveTCPConn, error) {
+	tcpAddr, err := net.ResolveTCPAddr("tcp", sAddr+":"+sPort)
 	if err != nil {
 		return nil, err
 	}
-	conn, err := net.DialTCP("tcp", nil, tcpAddr)
+	lTCPAddr, err := net.ResolveTCPAddr("tcp", ":" + cPort)
+	if err != nil {
+		return nil, err
+	}
+	conn, err := net.DialTCP("tcp", lTCPAddr, tcpAddr)
 	if err != nil {
 		return nil, err
 	}
