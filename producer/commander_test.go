@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"soupbintcp/types"
+	"soupbintcpclient/types"
 
 	"sort"
 )

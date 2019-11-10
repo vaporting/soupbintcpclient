@@ -3,7 +3,7 @@ package net
 import (
 	"net"
 
-	"soupbintcp/types"
+	"soupbintcpclient/types"
 
 	"time"
 )

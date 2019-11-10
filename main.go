@@ -11,11 +11,11 @@ import (
 
 	"flag"
 
-	"soupbintcp/types"
+	"soupbintcpclient/types"
 
-	"soupbintcp/producer"
+	"soupbintcpclient/producer"
 
-	"soupbintcp/net"
+	"soupbintcpclient/net"
 )
 
 func receive(sigC chan os.Signal, stopFlag *bool) {

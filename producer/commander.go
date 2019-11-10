@@ -1,7 +1,7 @@
 package producer
 
 import (
-	"soupbintcp/types"
+	"soupbintcpclient/types"
 
 	"sort"
 
