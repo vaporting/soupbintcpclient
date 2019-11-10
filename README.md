@@ -21,8 +21,16 @@ e.g.
 go run main.go -server_addr=127.0.0.1 -server_port=30010 -client_port=11111
 ```
 
-## How to build
+## Set up project
 1. Clone this project
+2. go to project folder
+3. Softlink this project in go/src
+    ```
+    $ ln -s [project_path] [GOPATH]/src/soupbintcpclient
+    ```
+
+## How to build
+1. **Set up project**
 2. go to project folder
 3. Run build command
     ```
@@ -31,17 +39,13 @@ go run main.go -server_addr=127.0.0.1 -server_port=30010 -client_port=11111
 4. get binary file: soupbintcp_client
 
 ## How to run tests
-1. Clone this project
-2. Softlink this project in go/src
-    ```
-    $ ln -s [project_path] [GOPATH]/src/soupbintcpclient
-    ```
-3. Go to project folder
-4. Run go get command to get all dependencies
+1. **Set up project**
+2. Go to project folder
+3. Run go get command to get all dependencies
     ```
     $ go get -t -v ./...
     ```
-5. Run test command
+4. Run test command
     ```
     $ go test -v ./...
     ```
