@@ -12,11 +12,11 @@ func TestNewPacket(t *testing.T) {
 	text := []byte("123")
 
 	// SUT
-	pkt, _ := NewPacket(PktTCliHB, text)
+	pkt, _ := NewPacket(PktTDbg, text)
 
 	// Assertion
 	assert.Equal(t, uint16(1+len(text)), pkt.len)
-	assert.Equal(t, PktTCliHB, pkt.pType)
+	assert.Equal(t, PktTDbg, pkt.pType)
 	assert.Equal(t, text, pkt.text)
 }
 
