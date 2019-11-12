@@ -25,6 +25,7 @@ func receive(sigC chan os.Signal, stopFlag *bool) {
 			*stopFlag = true
 			break
 		}
+		time.Sleep(100)
 	}
 }
 
@@ -71,6 +72,7 @@ func main() {
 	curT := time.Now().UnixNano() / int64(time.Millisecond)
 	for curT-baseT < 10000 && stopFlag == false {
 		curT = time.Now().UnixNano() / int64(time.Millisecond)
+		time.Sleep(100)
 	}
 	err = conn.Close()
 	if err != nil {

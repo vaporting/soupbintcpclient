@@ -10,7 +10,7 @@ import (
 
 // NewKeepAliveTCPConn creates KeepAliveTCPConn
 func NewKeepAliveTCPConn(sAddr string, sPort string, cPort string) (*KeepAliveTCPConn, error) {
-	tcpAddr, err := net.ResolveTCPAddr("tcp", sAddr+":"+sPort)
+	tcpAddr, err := net.ResolveTCPAddr("tcp", sAddr + ":" + sPort)
 	if err != nil {
 		return nil, err
 	}
@@ -56,6 +56,7 @@ func (conn *KeepAliveTCPConn) Start() error {
 				baseT = time.Now().UnixNano() / int64(time.Millisecond)
 			}
 		}
+		time.Sleep(100)
 	}
 	return err
 }

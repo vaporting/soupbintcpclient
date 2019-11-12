@@ -35,5 +35,6 @@ func (cmdr *Commander) Order() {
 			cmdr.tube <- cmdr.msgQ[i].Pkt.Bytes()
 			i++
 		}
+		time.Sleep(100)
 	}
 }
