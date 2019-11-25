@@ -5,22 +5,24 @@ import (
 
 	"soupbintcpclient/types"
 
+	"soupbintcpclient/errors"
+
 	"time"
 )
 
 // NewKeepAliveTCPConn creates KeepAliveTCPConn
 func NewKeepAliveTCPConn(sAddr string, sPort string, cPort string) (*KeepAliveTCPConn, error) {
-	tcpAddr, err := net.ResolveTCPAddr("tcp", sAddr + ":" + sPort)
+	tcpAddr, err := net.ResolveTCPAddr("tcp", sAddr+":"+sPort)
 	if err != nil {
-		return nil, err
+		return nil, errors.New(err)
 	}
-	lTCPAddr, err := net.ResolveTCPAddr("tcp", ":" + cPort)
+	lTCPAddr, err := net.ResolveTCPAddr("tcp", ":"+cPort)
 	if err != nil {
-		return nil, err
+		return nil, errors.New(err)
 	}
 	conn, err := net.DialTCP("tcp", lTCPAddr, tcpAddr)
 	if err != nil {
-		return nil, err
+		return nil, errors.New(err)
 	}
 	hbPkt, _ := types.NewPacket(types.PktTCliHB, []byte(""))
 	return &KeepAliveTCPConn{conn: conn, tube: make(chan []byte), hbPkt: *hbPkt}, err
@@ -58,12 +60,12 @@ func (conn *KeepAliveTCPConn) Start() error {
 		}
 		time.Sleep(100)
 	}
-	return err
+	return errors.New(err)
 }
 
 // Close closes the connection
 func (conn *KeepAliveTCPConn) Close() error {
-	return conn.conn.Close()
+	return errors.New(conn.conn.Close())
 }
 
 // GetTube returns feeding channel
